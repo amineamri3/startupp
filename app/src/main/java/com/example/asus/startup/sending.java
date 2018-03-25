@@ -18,11 +18,15 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -39,8 +43,13 @@ public class sending extends Activity implements LocationListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sending);
-        //sendSMS("99005484", "dsfsdf");
-
+        Button bt=(Button) findViewById(R.id.ok);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
@@ -50,6 +59,7 @@ public class sending extends Activity implements LocationListener{
         }
         // Getting LocationManager object
         statusCheck();
+
 
         locationManager = (LocationManager) getSystemService(
                 Context.LOCATION_SERVICE);
@@ -91,8 +101,12 @@ public class sending extends Activity implements LocationListener{
             Toast.makeText(getBaseContext(), "No Provider Found",
                     Toast.LENGTH_SHORT).show();
         }
+        TextView txt=(TextView)findViewById(R.id.txt);
+        txt.setText(" Message Sent ....");
+
         //   sendSMS("53803659","https://maps.google.com/?q="+location.getLatitude()+","+location.getLongitude()+"");
-        Toast.makeText(this, "https://maps.google.com/?q="+atitude+","+longitude+"", Toast.LENGTH_SHORT).show();
+
+
 
 
     }
