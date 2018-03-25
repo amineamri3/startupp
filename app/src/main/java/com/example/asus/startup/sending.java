@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -38,6 +39,9 @@ public class sending extends Activity implements LocationListener{
     LocationManager locationManager;
     String provider;
     double longitude;
+    String knownName;
+    String city;
+
     double atitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +107,9 @@ public class sending extends Activity implements LocationListener{
         }
         TextView txt=(TextView)findViewById(R.id.txt);
         txt.setText(" Message Sent ....");
-
-        //   sendSMS("53803659","https://maps.google.com/?q="+location.getLatitude()+","+location.getLongitude()+"");
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+       // Toast.makeText(this, "https://maps.google.com/?q="+atitude+","+longitude+" ,"+knownName+" "+city+"", Toast.LENGTH_SHORT).show();
+        sendSMS( prefs.getString("tel",""),prefs.getString("name","")+ " In Critical Condition @ https://maps.google.com/?q="+atitude+","+longitude+" ,"+knownName+" "+city+"");
 
 
 
@@ -153,12 +158,12 @@ public class sending extends Activity implements LocationListener{
 try {
     addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 
-//    String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-//    String city = addresses.get(0).getLocality();
+   // //address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+   city = addresses.get(0).getLocality();
 //    String state = addresses.get(0).getAdminArea();
 //    String country = addresses.get(0).getCountryName();
 //    String postalCode = addresses.get(0).getPostalCode();
-//    String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
+    knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
 
     longitude=location.getLongitude();
     atitude=location.getLatitude();
@@ -267,7 +272,14 @@ try {
                 }
             }
         }, new IntentFilter(DELIVERED));
-        smsManager.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
+        }
+        else
+        {
+            smsManager.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI);
+        }
            /* sms.sendMultipartTextMessage(phoneNumber, null, parts, sentIntents, deliveryIntents); */
     }
 }

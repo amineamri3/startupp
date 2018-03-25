@@ -35,12 +35,19 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     public DBHelper DB;
+    public DBAccess dbAccess;
+    String[][] tab;
+    int ind=1;
+    String msg="";
+
     private static int camId = Camera.CameraInfo.CAMERA_FACING_BACK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       DB = new DBHelper(this);
+        this.dbAccess = DBAccess.getInstance(getApplicationContext());
+        dbAccess.open();
+
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
         int currentApiVersion = Build.VERSION.SDK_INT;
@@ -134,32 +141,44 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
     @Override
     public void handleResult(Result result) {
 
+        tab = new String[][]{
+            {"6194043001019","Lait Delice","lactose","1","https://www.candia.fr/produit/grandlait-leger-digeste/"},
+            {"6191503210059","Golden Chips : Frommage","Arome de frommage","0","http://www.carrefour.fr/catalogue/carrefour/hypermarche-Promo12_0318_6qK4rUr3/produit/191-pringles?v=V01&cda_source=sea_medias&cda_medium=cpc&cda_campaign=jhcpromo10&cda_content=MONTEREAU_&gclid=CjwKCAjw7tfVBRB0EiwAiSYGM-xczJig7XcgXkYj-uP2PYx_-Ip2amro0LyPd1NGv1LgrzfXifQS_hoC2bsQAvD_BwE"},
+            {"6194008515520","Start","farine de blé","1","chttp://nutridiet.tn/produit/digestif-orange/"}
+
+
+    };
         final String myResult = result.getText();
+        Log.d("code",myResult);
+        for(int i=0;i<3;i++)if(myResult.equals(tab[i][0]))ind=i;
         Log.d("QRCodeScanner", result.getText());
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(DB.getAli(result.getText()));
-        List<String> l  = new ArrayList<String>();
-        l=DB.verify(result.getText());
+        builder.setTitle(tab[ind][1]);
+        //List<String> l  ;
+       // l=dbAccess.verify(result.getText());
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 scannerView.resumeCameraPreview(Scanner.this);
             }
         });
-        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("Alternative", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(myResult));
+                //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(myResult));
+                //startActivity(browserIntent);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(tab[ind][4]));
                 startActivity(browserIntent);
             }
         });
-        String msg = "Ce Produit Contient : \n";
-        for(int i =0;i<l.size();i++){
-            msg += String.valueOf(l.get(i));
-        }
-        builder.setMessage(result.getText());
+        if(tab[ind][3]=="0")
+             msg = "Ce Produit Ne Contient Ingredient Allergere: \n";
+        else
+            msg = "Eviter De Consommer Ce Produit Car Il Contient: `\n" + tab[ind][2] ;
+
+        builder.setMessage(msg);
         AlertDialog alert1 = builder.create();
         alert1.show();
     }
