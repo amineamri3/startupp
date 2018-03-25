@@ -41,7 +41,8 @@
                 android:resource="@xml/new_app_widget_info" />
         </receiver>
 
-        <activity android:name=".sending"></activity>
+        <activity android:name=".sending"
+            android:theme="@android:style/Theme.Dialog"></activity>
     </application>
 
 </manifest>

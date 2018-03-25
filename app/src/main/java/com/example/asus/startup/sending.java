@@ -92,7 +92,8 @@ public class sending extends Activity implements LocationListener{
                     Toast.LENGTH_SHORT).show();
         }
         //   sendSMS("53803659","https://maps.google.com/?q="+location.getLatitude()+","+location.getLongitude()+"");
-        Toast.makeText(this, "https://maps.google.com/?q="+atitude+","+longitude+"", Toast.LENGTH_SHORT).show();
+
+
 
 
     }

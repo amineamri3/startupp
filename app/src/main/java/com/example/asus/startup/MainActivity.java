@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 Button btn;
@@ -13,14 +14,86 @@ Button btn;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn = (Button)findViewById(R.id.button2);
-        btn.setOnClickListener(new View.OnClickListener() {
+
+        getSupportActionBar().hide();
+        final ImageButton scanner =(ImageButton) findViewById(R.id.scanner);
+
+        scanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,Scanner.class);
+                Intent i=new Intent(MainActivity.this,Scanner.class);
                 startActivity(i);
+
+
             }
         });
+
+        ImageButton dr =(ImageButton) findViewById(R.id.dr);
+
+        dr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+            }
+        });
+
+        ImageButton idea =(ImageButton) findViewById(R.id.idea);
+
+        idea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+            }
+        });
+
+        ImageButton profile =(ImageButton) findViewById(R.id.profile);
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+            }
+        });
+
+        ImageButton gear =(ImageButton) findViewById(R.id.gear);
+
+        gear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+            }
+        });
+
+        Button emergency =(Button) findViewById(R.id.emergency);
+
+        emergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inte=new Intent(MainActivity.this,sending.class);
+                startActivity(inte);
+
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
     }
 
 

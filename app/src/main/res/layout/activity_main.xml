@@ -1,26 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:weightSum="1"
     tools:context="com.example.asus.startup.MainActivity">
+<android.support.v4.widget.Space
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.2"/>
+
+   <LinearLayout
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="0.2"
+       android:orientation="horizontal"
+       android:weightSum="1">
+       <ImageButton
+           android:src="@drawable/scanner"
+           android:id="@+id/scanner"
+           android:background="@drawable/menu_button"
+           android:layout_margin="10dp"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="0.5"/>
+
+       <ImageButton
+           android:id="@+id/dr"
+
+           android:src="@drawable/doctor"
+           android:background="@drawable/menu_button"
+           android:layout_margin="10dp"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="0.5"/>
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <ImageButton
+            android:id="@+id/idea"
+
+            android:src="@drawable/idea"
+            android:background="@drawable/menu_button"
+            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"/>
+
+        <ImageButton
+            android:id="@+id/profile"
+
+            android:src="@drawable/profile"
+            android:background="@drawable/menu_button"
+            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <ImageButton
+            android:id="@+id/gear"
+
+            android:background="@drawable/menu_button"
+            android:layout_margin="10dp"
+            android:src="@drawable/gear"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="0.5"/>
+
+        <Button
+            android:id="@+id/emergency"
+
+            android:background="@drawable/menu_red_button"
+            android:text="EMERGENCY"
+            android:textColor="#f1daee"
+            android:textSize="15dp"
+            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="175dp" />
-
-</android.support.constraint.ConstraintLayout>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="2018 © Allergy Sweeper"
+        android:textColor="#457b9d"
+       />
+</LinearLayout>
