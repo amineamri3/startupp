@@ -136,7 +136,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
     }
-
+//ggg
     public List<String> verify(String codeAB){
         database =getReadableDatabase();
         Cursor c,c2 = null;
