@@ -23,7 +23,10 @@ import android.support.v7.app.AppCompatActivity;
 
         import com.google.zxing.Result;
 
-        import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import java.util.ArrayList;
+import java.util.List;
+
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
         import static android.Manifest.permission.CAMERA;
 
@@ -31,12 +34,13 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
+    public DBHelper DB;
     private static int camId = Camera.CameraInfo.CAMERA_FACING_BACK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+       DB = new DBHelper(this);
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
         int currentApiVersion = Build.VERSION.SDK_INT;
@@ -131,12 +135,15 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
 
     @Override
     public void handleResult(Result result) {
+
         final String myResult = result.getText();
         Log.d("QRCodeScanner", result.getText());
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
+        builder.setTitle(DB.getAli(result.getText()));
+        List<String> l  = new ArrayList<String>();
+        l=DB.verify(result.getText());
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -150,6 +157,10 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
                 startActivity(browserIntent);
             }
         });
+        String msg = "Ce Produit Contient : \n";
+        for(int i =0;i<l.size();i++){
+            msg += String.valueOf(l.get(i));
+        }
         builder.setMessage(result.getText());
         AlertDialog alert1 = builder.create();
         alert1.show();
