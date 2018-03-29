@@ -5,115 +5,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     android:weightSum="1"
     tools:context="com.example.asus.startup.MainActivity">
-<android.support.v4.widget.Space
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_weight="0.2"/>
 
-   <LinearLayout
-       android:layout_marginLeft="10dp"
-       android:layout_marginRight="10dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_weight="0.2"
-       android:orientation="horizontal"
-       android:weightSum="1">
-       <ImageButton
-           android:src="@drawable/scanner"
-           android:id="@+id/scanner"
-           android:background="@drawable/menu_button"
-           android:layout_margin="10dp"
-           android:layout_width="0dp"
-           android:layout_height="match_parent"
-           android:layout_weight="0.5"/>
-
-       <ImageButton
-           android:id="@+id/dr"
-
-           android:src="@drawable/doctor"
-           android:background="@drawable/menu_button"
-           android:layout_margin="10dp"
-           android:layout_width="0dp"
-           android:layout_height="match_parent"
-           android:layout_weight="0.5"/>
-   </LinearLayout>
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_width="match_parent"
-
-        android:layout_height="wrap_content"
         android:layout_weight="0.2"
         android:orientation="horizontal"
         android:weightSum="1">
+
+        <ImageButton
+            android:id="@+id/scanner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/menu_button"
+            android:src="@drawable/scanner" />
+
+        <ImageButton
+            android:id="@+id/dr"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/menu_button"
+            android:src="@drawable/doctor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+
+        android:layout_marginRight="10dp"
+        android:layout_weight="0.2"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
         <ImageButton
             android:id="@+id/idea"
 
-            android:src="@drawable/idea"
-            android:background="@drawable/menu_button"
-            android:layout_margin="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"/>
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/menu_button"
+            android:src="@drawable/idea" />
 
         <ImageButton
             android:id="@+id/profile"
 
-            android:src="@drawable/profile"
-            android:background="@drawable/menu_button"
-            android:layout_margin="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"/>
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/menu_button"
+            android:src="@drawable/profile" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_weight="0.2"
         android:orientation="horizontal"
         android:weightSum="1">
+
         <ImageButton
             android:id="@+id/gear"
 
-            android:background="@drawable/menu_button"
-            android:layout_margin="10dp"
-            android:src="@drawable/gear"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/menu_button"
             android:gravity="center"
-            android:layout_weight="0.5"/>
+            android:src="@drawable/gear" />
 
         <Button
             android:id="@+id/emergency"
 
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="0.5"
             android:background="@drawable/menu_red_button"
             android:text="EMERGENCY"
             android:textColor="#f1daee"
-            android:textSize="15dp"
-            android:layout_margin="10dp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"/>
+            android:textSize="15dp" />
     </LinearLayout>
+
     <android.support.v4.widget.Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.1"/>
+        android:layout_weight="0.1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="20dp"
         android:text="2018 © Allergy Sweeper"
         android:textColor="#457b9d"
-       />
+        android:textSize="20dp" />
 </LinearLayout>

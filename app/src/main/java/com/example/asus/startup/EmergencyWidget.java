@@ -1,26 +1,17 @@
 package com.example.asus.startup;
 
-import android.Manifest;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.telephony.SmsManager;
-import android.util.Log;
-import android.widget.Button;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 /**
  * Implementation of App Widget functionality.
  */
-public class NewAppWidget extends AppWidgetProvider {
+public class EmergencyWidget extends AppWidgetProvider {
     private static final String SYNC_CLICKED    = "automaticWidgetSyncButtonClick";
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -49,7 +40,7 @@ public class NewAppWidget extends AppWidgetProvider {
             // Instruct the widget manager to update the widget
 
 
-        ComponentName watchWidget = new ComponentName(context, NewAppWidget.class);
+        ComponentName watchWidget = new ComponentName(context, EmergencyWidget.class);
 
         views.setOnClickPendingIntent(R.id.help, getPendingSelfIntent(context, SYNC_CLICKED));
         appWidgetManager.updateAppWidget(watchWidget, views);
@@ -79,7 +70,7 @@ public class NewAppWidget extends AppWidgetProvider {
             ComponentName watchWidget;
 
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-            watchWidget = new ComponentName(context, NewAppWidget.class);
+            watchWidget = new ComponentName(context, EmergencyWidget.class);
 
             Intent inte=new Intent(context,sending.class);
             context.startActivity(inte);
