@@ -19,7 +19,7 @@ Button btn;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        //startActivity(new Intent(this,blacklist.class));
 
         getSupportActionBar().hide();
         final ImageButton scanner =(ImageButton) findViewById(R.id.scanner);
@@ -76,11 +76,14 @@ Button btn;
         gear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,blacklist.class));
 
 
 
             }
         });
+
+
 
         Button emergency =(Button) findViewById(R.id.emergency);
 
