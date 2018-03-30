@@ -1,29 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.asus.startup.blacklist">
+    tools:context="com.example.asus.startup.blacklist"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="right">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/checkText"
+            android:text="Check All"/>
 
-        <ToggleButton
-            android:id="@+id/toggleButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ToggleButton" />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/checkBtn"
+            android:background="@drawable/check"
+            android:layout_marginRight="10dp"
+           />
 
-        <LinearLayout
+
+    </LinearLayout>
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.90">
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></ListView>
+            android:layout_weight="0.75">
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+             />
+
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,8 +56,9 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/shareBtn"
                 android:text="Share"/>
         </LinearLayout>
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+

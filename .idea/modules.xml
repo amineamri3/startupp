@@ -4,7 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/startup.iml" filepath="$PROJECT_DIR$/startup.iml" />
-      <module fileurl="file://C:\Users\asus\Desktop\startup\startupp.iml" filepath="C:\Users\asus\Desktop\startup\startupp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/startupp.iml" filepath="$PROJECT_DIR$/startupp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../asus/Desktop/startup/startupp.iml" filepath="$PROJECT_DIR$/../../../asus/Desktop/startup/startupp.iml" />
     </modules>
   </component>
 </project>
