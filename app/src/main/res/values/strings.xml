@@ -3,4 +3,6 @@
     <string name="appwidget_text">Allergey Sweeper Widget</string>
     <string name="add_widget">Add widget</string>
     <string name="title_activity_maps">Map</string>
+    <string name="facebook_application_id" translatable="false">420086535086201</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb420086535086201</string>
 </resources>

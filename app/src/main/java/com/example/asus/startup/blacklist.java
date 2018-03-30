@@ -1,9 +1,15 @@
 package com.example.asus.startup;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.View;
@@ -22,6 +28,7 @@ public class blacklist extends Activity {
     int preSelectedIndex = -1;
     boolean CheckState = true;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +42,7 @@ public class blacklist extends Activity {
 
 
         final List<Aliments> elements = new ArrayList<>();
-        elements.add(new Aliments(false, "Dharm"));
-        elements.add(new Aliments(false, "Mark"));
-        elements.add(new Aliments(false, "Singh"));
-        elements.add(new Aliments(false, "The Mobile Era"));
+
 
         final CustomAdapter adapter = new CustomAdapter(this, elements);
         listView.setAdapter(adapter);
@@ -92,17 +96,75 @@ public class blacklist extends Activity {
                      message += elements.get(i).getName();
                      message +="\n";
                    }
-
-                    Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+                }
+                   /* Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
                     intent2.setType("text/plain");
                     intent2.putExtra(Intent.EXTRA_TEXT, message );
-                    startActivity(Intent.createChooser(intent2, "Share via"));
+                    startActivity(Intent.createChooser(intent2, "Share via"));*/
 
 
-                }
+                onShareClick(view,message);
             }
         });
 
     }
+
+
+
+
+    public void onShareClick(View v,String msg) {
+        Resources resources = getResources();
+
+        Intent emailIntent = new Intent();
+        emailIntent.setAction(Intent.ACTION_SEND);
+        // Native email client doesn't currently support HTML, but it doesn't hurt to try in case they fix it
+        emailIntent.putExtra(Intent.EXTRA_TEXT, msg);
+       // emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Sha");
+        emailIntent.setType("message/rfc822");
+
+        PackageManager pm = getPackageManager();
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.setType("text/plain");
+
+
+        Intent openInChooser = Intent.createChooser(emailIntent, "Share Via");
+
+        List<ResolveInfo> resInfo = pm.queryIntentActivities(sendIntent, 0);
+        List<LabeledIntent> intentList = new ArrayList<LabeledIntent>();
+        for (int i = 0; i < resInfo.size(); i++) {
+            // Extract the label, append it, and repackage it in a LabeledIntent
+            ResolveInfo ri = resInfo.get(i);
+            String packageName = ri.activityInfo.packageName;
+            if(packageName.contains("android.email")) {
+                emailIntent.setPackage(packageName);
+            } else if( packageName.contains("facebook") || packageName.contains("mms") || packageName.contains("android.gm")) {
+                Intent intent = new Intent();
+                intent.setComponent(new ComponentName(packageName, ri.activityInfo.name));
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                if(packageName.contains("facebook")) {
+                    // Warning: Facebook IGNORES our text. They say "These fields are intended for users to express themselves. Pre-filling these fields erodes the authenticity of the user voice."
+                    // One workaround is to use the Facebook SDK to post, but that doesn't allow the user to choose how they want to share. We can also make a custom landing page, and the link
+                    // will show the <meta content ="..."> text from that page with our link in Facebook.
+                    intent.putExtra(Intent.EXTRA_TEXT, msg);
+                } else if(packageName.contains("mms")) {
+                    intent.putExtra(Intent.EXTRA_TEXT, msg);
+                } else if(packageName.contains("android.gm")) { // If Gmail shows up twice, try removing this else-if clause and the reference to "android.gm" above
+                    intent.putExtra(Intent.EXTRA_TEXT,msg);
+                   // intent.putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.share_email_subject));
+                    intent.setType("message/rfc822");
+                }
+
+                intentList.add(new LabeledIntent(intent, packageName, ri.loadLabel(pm), ri.icon));
+            }
+        }
+
+        // convert intentList to array
+        LabeledIntent[] extraIntents = intentList.toArray( new LabeledIntent[ intentList.size() ]);
+
+        openInChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, extraIntents);
+        startActivity(openInChooser);
     }
+
+}
 
