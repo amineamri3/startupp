@@ -12,7 +12,8 @@
         android:inputType="textPersonName"
         android:text="Name"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
 
     <Button
         android:id="@+id/B_search"
@@ -20,6 +21,7 @@
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/TF_location"
+        android:layout_toRightOf="@+id/TF_location"
         android:onClick="onClick"
         android:text="Search" />
 
@@ -33,6 +35,7 @@
         android:layout_height="wrap_content"
         tools:context="com.example.priyanka.mapsdemo.MapsActivity"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/B_hopistals" />
 
@@ -41,34 +44,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/TF_location"
         android:onClick="onClick"
         android:text="Hospitals" />
 
     <Button
-        android:id="@+id/B_schools"
+        android:id="@+id/B_Doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/TF_location"
         android:layout_toEndOf="@+id/B_hopistals"
+        android:layout_toRightOf="@+id/B_hopistals"
         android:onClick="onClick"
-        android:text="Schools" />
+        android:text="Doctor" />
 
     <Button
-        android:id="@+id/B_restaurants"
+        android:id="@+id/B_Phar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/TF_location"
-        android:layout_toEndOf="@+id/B_schools"
+        android:layout_toEndOf="@+id/B_Doctor"
+        android:layout_toRightOf="@+id/B_Doctor"
         android:onClick="onClick"
-        android:text="Restautants" />
+        android:text="Pharmacy" />
 
     <Button
         android:id="@+id/B_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/B_restaurants"
-        android:layout_toEndOf="@+id/B_restaurants"
+        android:layout_alignBottom="@+id/B_Doctor"
+        android:layout_toEndOf="@+id/B_Phar"
+        android:layout_toRightOf="@+id/B_Phar"
         android:onClick="onClick"
         android:text="To" />
 
