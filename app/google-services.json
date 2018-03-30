@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "525411217270",
+    "firebase_url": "https://startupp-55790.firebaseio.com",
+    "project_id": "startupp-55790",
+    "storage_bucket": "startupp-55790.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525411217270:android:1458d982b04f0f9d",
+        "android_client_info": {
+          "package_name": "com.example.asus.startup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525411217270-g0n7vmgbo7a9qhsa21hmuavlrqfsctp8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.asus.startup",
+            "certificate_hash": "a0d81366e5dd7391d1d65c5400e05495f94541cf"
+          }
+        },
+        {
+          "client_id": "525411217270-4n8hj661lfq2aebo7424hjdbduneecov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1ftTaJICiGj2p9m751lMSjePvSzXAKZM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525411217270-4n8hj661lfq2aebo7424hjdbduneecov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
