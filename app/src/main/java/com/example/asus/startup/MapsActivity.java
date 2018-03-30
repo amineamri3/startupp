@@ -2,6 +2,8 @@ package com.example.asus.startup;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -11,6 +13,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
@@ -53,11 +56,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            checkLocationPermission();
+        locationTrack();
 
-        }
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -162,7 +163,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 break;
             case R.id.B_to:
                 mMap.clear();
-                String supermarket = "store";//store zeda
+                String supermarket = "grocery_or_supermarket";//store zeda
                 url = getUrl(latii, longi, supermarket);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
@@ -195,28 +196,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    public boolean checkLocationPermission()
-    {
-        if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)  != PackageManager.PERMISSION_GRANTED )
-        {
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION))
-            {
-                ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION },REQUEST_LOCATION_CODE);
-            }
-            else
-            {
-                ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION },REQUEST_LOCATION_CODE);
-            }
-            return false;
-
-        }
-        else{
-locationTrack();
-            return true;
-
-        }
-    }
 
 
     @Override
