@@ -40,9 +40,15 @@ public class blacklist extends Activity {
         final TextView checkText = (TextView)findViewById(R.id.checkText);
         Button shareBtn = (Button)findViewById(R.id.shareBtn);
 
+        DatabaseAccess db = DatabaseAccess.getInstance(this);
+        db.openToRead();
 
+           List<String> aller = new ArrayList<>();
+           aller = db.getAllAllergin();
         final List<Aliments> elements = new ArrayList<>();
-
+        for(int i =0;i<aller.size();i++){
+            elements.add(new Aliments(false,aller.get(i)));
+        }
 
         final CustomAdapter adapter = new CustomAdapter(this, elements);
         listView.setAdapter(adapter);

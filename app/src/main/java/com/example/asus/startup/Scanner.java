@@ -34,8 +34,7 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
-    public DBHelper DB;
-    public DBAccess dbAccess;
+
     String[][] tab;
     int ind=1;
     String msg="";
@@ -45,8 +44,7 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.dbAccess = DBAccess.getInstance(getApplicationContext());
-        dbAccess.open();
+
 
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
