@@ -78,24 +78,23 @@ public class profile extends Activity {
                     .centerCrop()
                     .into(image);
              uid = user.getUid();
-            //ArrayList<Boolean> allergi =db.getswitch(uid);
-            //String num =db.getNum(uid);
-//            phone.setText(num);
+            ArrayList<Boolean> allergi =db.getswitch(uid);
+            String num =db.getNum(uid);
+           phone.setText(num);
 //            s1.setChecked(allergi.get(0));
 //            s2.setChecked(allergi.get(1));
 //            s3.setChecked(allergi.get(2));
 //            s4.setChecked(allergi.get(3));
 
         }else{
-            //ArrayList<Boolean> allergi =db.getswitch(uid);
+            ArrayList<Boolean> allergi =db.getswitch("OFFLINE");
 //            s1.setChecked(allergi.get(0));
 //            s2.setChecked(allergi.get(1));
 //            s3.setChecked(allergi.get(2));
 //            s4.setChecked(allergi.get(3));
-            //String num =db.getNum("OFFLINE");
-           // phone.setText(num);
+            String num =db.getNum("OFFLINE");
+           phone.setText(num);
             namee.setText("OFFLINE USER");
-            //ArrayList<Boolean> allergi =db.getswitch("OFFLINE");
 
         }
 
@@ -119,16 +118,16 @@ public class profile extends Activity {
                         update.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
- //                               ArrayList<Boolean> allergi =new ArrayList<>();
+                              ArrayList<Boolean> allergi =new ArrayList<>();
 //                                allergi.add(s1.isChecked());
 //                                allergi.add(s2.isChecked());
 //                                allergi.add(s3.isChecked());
 //                                allergi.add(s4.isChecked());
                                 if (user==null){
-//                                db1.updateProfile(allergi,phone.getText().toString(),"OFFLINE");
+                                db1.updateProfile(allergi,phone.getText().toString(),"OFFLINE");
 
                                 }else{
-//                                db1.updateProfile(allergi,phone.getText().toString(),uid);
+                                db1.updateProfile(allergi,phone.getText().toString(),uid);
 
                                 }
 

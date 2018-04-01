@@ -31,6 +31,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,9 +111,20 @@ public class sending extends Activity implements LocationListener{
             Toast.makeText(getBaseContext(), "No Provider Found",
                     Toast.LENGTH_SHORT).show();
         }
+        DatabaseAccess db = DatabaseAccess.getInstance(this);
+       FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+       String num,name;
+        if (user!=null){
+             num =db.getNum(user.getUid());
+             name=user.getDisplayName();
 
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        sendSMS( prefs.getString("tel",""),prefs.getString("name","")+ " In Critical Condition @ https://maps.google.com/?q="+atitude+","+longitude+" ,"+knownName+" "+city+"");
+        }else{
+             num=db.getNum("OFFLINE");
+             name="USER OFFLINE";
+        }
+
+
+        sendSMS(num,name+ " In Critical Condition @ https://maps.google.com/?q="+atitude+","+longitude+" ,"+knownName+" "+city+"");
 
 
 

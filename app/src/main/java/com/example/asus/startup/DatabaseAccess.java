@@ -104,7 +104,7 @@ public class DatabaseAccess {
     }
 
     public String getNum(String uid) {
-        return "";
+        return "99005484";
     }
 
     public ArrayList<Boolean> getswitch(String offline) {
@@ -112,6 +112,6 @@ public class DatabaseAccess {
         return null;
     }
 
-    public void updateProfile(ArrayList<Boolean> allergi, String text) {
+    public void updateProfile(ArrayList<Boolean> allergi, String text1,String text) {
     }
 }
