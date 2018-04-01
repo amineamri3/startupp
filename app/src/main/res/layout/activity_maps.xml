@@ -4,26 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/TF_location"
-        android:layout_width="290dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
 
-    <Button
-        android:id="@+id/B_search"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/TF_location"
-        android:layout_toRightOf="@+id/TF_location"
-        android:onClick="onClick"
-        android:text="Search" />
 
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -37,23 +18,27 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/B_hopistals" />
-
+        android:layout_below="@+id/group" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/group"
+    android:weightSum="1">
     <Button
         android:id="@+id/B_hopistals"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.25"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/TF_location"
         android:onClick="onClick"
         android:text="Hospitals" />
 
     <Button
         android:id="@+id/B_Doctor"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.25"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/TF_location"
         android:layout_toEndOf="@+id/B_hopistals"
         android:layout_toRightOf="@+id/B_hopistals"
         android:onClick="onClick"
@@ -61,9 +46,9 @@
 
     <Button
         android:id="@+id/B_Phar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.25"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/TF_location"
         android:layout_toEndOf="@+id/B_Doctor"
         android:layout_toRightOf="@+id/B_Doctor"
         android:onClick="onClick"
@@ -71,13 +56,15 @@
 
     <Button
         android:id="@+id/B_to"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="0.25"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/B_Doctor"
         android:layout_toEndOf="@+id/B_Phar"
         android:layout_toRightOf="@+id/B_Phar"
         android:onClick="onClick"
-        android:text="SuperMarket" />
+        android:text="Supermarket" />
+
+</LinearLayout>
 
 
 </RelativeLayout>

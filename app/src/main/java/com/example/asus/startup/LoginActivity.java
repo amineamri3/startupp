@@ -41,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         // Choose authentication providers
-Intent i = new Intent(this,MainActivity.class);
 
 
         if(isNetworkAvailable()) {

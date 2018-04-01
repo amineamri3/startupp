@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -26,14 +27,22 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 public class profile extends Activity {
     DatabaseAccess dbAccess;
     ImageButton bt;
+    DatabaseAccess db1,db;
+    Switch s1,s2,s3,s4;
+    FirebaseUser user;
+    String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,35 +50,56 @@ public class profile extends Activity {
         final Button update= (Button)findViewById(R.id.update);
         final TextView namee = (TextView) findViewById(R.id.name);
         final EditText phone = (EditText)findViewById(R.id.phone);
-        Switch s1 = (Switch) findViewById(R.id.switch1);
-        Switch s2 = (Switch) findViewById(R.id.switch2);
-        Switch s3 = (Switch) findViewById(R.id.switch3);
-        Switch s4 = (Switch) findViewById(R.id.switch4);
+         s1 = (Switch) findViewById(R.id.switch1);
+         s2 = (Switch) findViewById(R.id.switch2);
+         s3 = (Switch) findViewById(R.id.switch3);
+         s4 = (Switch) findViewById(R.id.switch4);
 
         bt=(ImageButton) findViewById(R.id.logout);
         de.hdodenhof.circleimageview.CircleImageView image =(de.hdodenhof.circleimageview.CircleImageView) findViewById(R.id.profile_image);
         update.setVisibility(View.GONE);
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        phone.setText( prefs.getString("tel", ""));
+         db = DatabaseAccess.getInstance(this);
+        db1 = DatabaseAccess.getInstance(this);
+        db1.openToWrite();
+        db.openToRead();
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            // Name, email address, and profile photo Url
            String name = user.getDisplayName();
             String email = user.getEmail();
             Uri photoUrl = user.getPhotoUrl();
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
             namee.setText(name);
-            image.setImageURI(photoUrl);
+            if (photoUrl!=null)
+            Picasso.get().load(photoUrl)
+                    .resize(80, 80)
+                    .centerCrop()
+                    .into(image);
+             uid = user.getUid();
+            //ArrayList<Boolean> allergi =db.getswitch(uid);
+            //String num =db.getNum(uid);
+//            phone.setText(num);
+//            s1.setChecked(allergi.get(0));
+//            s2.setChecked(allergi.get(1));
+//            s3.setChecked(allergi.get(2));
+//            s4.setChecked(allergi.get(3));
 
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getIdToken() instead.
-            String uid = user.getUid();
+        }else{
+            //ArrayList<Boolean> allergi =db.getswitch(uid);
+//            s1.setChecked(allergi.get(0));
+//            s2.setChecked(allergi.get(1));
+//            s3.setChecked(allergi.get(2));
+//            s4.setChecked(allergi.get(3));
+            //String num =db.getNum("OFFLINE");
+           // phone.setText(num);
+            namee.setText("OFFLINE USER");
+            //ArrayList<Boolean> allergi =db.getswitch("OFFLINE");
+
         }
-bt.setOnClickListener(new View.OnClickListener() {
+
+        bt.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
 
@@ -89,11 +119,21 @@ bt.setOnClickListener(new View.OnClickListener() {
                         update.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                SharedPreferences.Editor editor = getSharedPreferences("prefs", MODE_PRIVATE).edit();
-                                editor.putString("tel", String.valueOf(phone.getText()));
+ //                               ArrayList<Boolean> allergi =new ArrayList<>();
+//                                allergi.add(s1.isChecked());
+//                                allergi.add(s2.isChecked());
+//                                allergi.add(s3.isChecked());
+//                                allergi.add(s4.isChecked());
+                                if (user==null){
+//                                db1.updateProfile(allergi,phone.getText().toString(),"OFFLINE");
+
+                                }else{
+//                                db1.updateProfile(allergi,phone.getText().toString(),uid);
+
+                                }
 
 
-                                editor.apply();
+                                Toast.makeText(profile.this, "updated!", Toast.LENGTH_SHORT).show();
                                 update.setVisibility(View.GONE);
                                 phone.setEnabled(false);
 

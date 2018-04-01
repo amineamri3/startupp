@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.Editable;
 
 
 import java.util.ArrayList;
@@ -100,5 +101,17 @@ public class DatabaseAccess {
 
         return ("you are allergic to \"" + cursor.getString(1)+"\"\nfor an alternatif product please visit\n "+cursor.getString(4));
 
+    }
+
+    public String getNum(String uid) {
+        return "";
+    }
+
+    public ArrayList<Boolean> getswitch(String offline) {
+
+        return null;
+    }
+
+    public void updateProfile(ArrayList<Boolean> allergi, String text) {
     }
 }
