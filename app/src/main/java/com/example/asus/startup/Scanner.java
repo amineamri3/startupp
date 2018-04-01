@@ -44,7 +44,7 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().hide();
 
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);

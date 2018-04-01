@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +47,8 @@ public class sending extends Activity implements LocationListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_sending);
         Button bt=(Button) findViewById(R.id.ok);
         bt.setOnClickListener(new View.OnClickListener() {
@@ -105,10 +108,8 @@ public class sending extends Activity implements LocationListener{
             Toast.makeText(getBaseContext(), "No Provider Found",
                     Toast.LENGTH_SHORT).show();
         }
-        TextView txt=(TextView)findViewById(R.id.txt);
-        txt.setText(" Message Sent ....");
+
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-       // Toast.makeText(this, "https://maps.google.com/?q="+atitude+","+longitude+" ,"+knownName+" "+city+"", Toast.LENGTH_SHORT).show();
         sendSMS( prefs.getString("tel",""),prefs.getString("name","")+ " In Critical Condition @ https://maps.google.com/?q="+atitude+","+longitude+" ,"+knownName+" "+city+"");
 
 
