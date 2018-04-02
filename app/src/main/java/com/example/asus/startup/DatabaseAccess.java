@@ -9,7 +9,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.Editable;
 
 
 import java.util.ArrayList;
@@ -90,7 +89,7 @@ public class DatabaseAccess {
      *
      * @return a List of Aliments
      */
-    public String getAllergin(String code) {
+    public List<String> getAllergin(String code) {
         List<String> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM alternatif"+
                 " INNER JOIN aliment ON alternatif.code=aliment.code" +
@@ -99,19 +98,21 @@ public class DatabaseAccess {
                 " AND Aliment.code = ?",new String[]{code});
         cursor.moveToFirst();
 
-        return ("you are allergic to \"" + cursor.getString(1)+"\"\nfor an alternatif product please visit\n "+cursor.getString(4));
-
+        do{
+            list.add(cursor.getString(7));
+        }while(cursor.moveToNext());
+        return (list);
     }
 
-    public String getNum(String uid) {
-        return "";
-    }
 
-    public ArrayList<Boolean> getswitch(String offline) {
 
-        return null;
-    }
-
-    public void updateProfile(ArrayList<Boolean> allergi, String text) {
+    public String getName (String code){
+        Cursor c = database.rawQuery("SELECT name FROM aliment WHERE code = '?';",new String[]{code});
+        if(c.getCount() == 0){
+            return "Erreur";
+        }else{
+            c.moveToFirst();
+            return c.getString(0);
+        }
     }
 }

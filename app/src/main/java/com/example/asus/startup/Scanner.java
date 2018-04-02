@@ -148,14 +148,27 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
     };
         final String myResult = result.getText();
         Log.d("code",myResult);
-        for(int i=0;i<3;i++)if(myResult.equals(tab[i][0]))ind=i;
+
         Log.d("QRCodeScanner", result.getText());
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
 
+        DatabaseAccess db = DatabaseAccess.getInstance(this);
+        db.openToRead();
+        List<String> l = new ArrayList<>();
+        l = db.getAllergin(myResult);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(tab[ind][1]);
+        builder.setTitle(db.getName(myResult));
         //List<String> l  ;
-       // l=dbAccess.verify(result.getText());
+        if(l.size() == 0){
+            msg = "Ce Produit Ne Contient Pas des Ingredient Allergere \n";
+        }else{
+            msg = "Eviter De Consommer Ce Produit Car Il Contient: \n";
+            for(int i =0;i<l.size();i++){
+                msg += l.get(i) ;
+                msg += '\n';
+            }
+        }
+
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -165,16 +178,12 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
         builder.setNeutralButton("Alternative", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(myResult));
-                //startActivity(browserIntent);
+               /*
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(tab[ind][4]));
-                startActivity(browserIntent);
+                startActivity(browserIntent);        NEED TO FIX !!!!!!!!! */
             }
         });
-        if(tab[ind][3]=="0")
-             msg = "Ce Produit Ne Contient Ingredient Allergere: \n";
-        else
-            msg = "Eviter De Consommer Ce Produit Car Il Contient: `\n" + tab[ind][2] ;
+
 
         builder.setMessage(msg);
         AlertDialog alert1 = builder.create();
