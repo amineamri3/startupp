@@ -73,6 +73,9 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".blacklist" />
         <activity android:name=".LoginActivity">
+
+        </activity>
+        <activity android:name=".splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

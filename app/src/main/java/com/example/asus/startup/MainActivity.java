@@ -153,6 +153,10 @@ Button btn;
 
 
     }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 
 
 

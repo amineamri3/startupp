@@ -7,9 +7,13 @@ package com.example.asus.startup;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.Editable;
+import android.util.Log;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -65,6 +69,7 @@ public class DatabaseAccess {
         }
     }
 
+
     /**
      * Read all allergic products from the database.
      *
@@ -103,15 +108,4 @@ public class DatabaseAccess {
 
     }
 
-    public String getNum(String uid) {
-        return "99005484";
-    }
-
-    public ArrayList<Boolean> getswitch(String offline) {
-
-        return null;
-    }
-
-    public void updateProfile(ArrayList<Boolean> allergi, String text1,String text) {
-    }
 }

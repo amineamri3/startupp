@@ -72,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-locationTrack();
+        locationTrack();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -152,7 +152,7 @@ locationTrack();
 //                    }
 //                }
 //                break;
-            case R.id.B_hopistals:
+            case R.id.hopistals:
                 mMap.clear();
                 String hospital = "hospital";
                 String url = getUrl(latii, longi, hospital);
@@ -164,7 +164,7 @@ locationTrack();
                 break;
 
 
-            case R.id.B_Doctor:
+            case R.id.Doctor:
                 mMap.clear();
                 String doc = "doctor";
                 url = getUrl(latii, longi, doc);
@@ -173,7 +173,7 @@ locationTrack();
                 getNearbyPlacesData.execute(dataTransfer);
                 Toast.makeText(MapsActivity.this, "Showing Nearby Doctor", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.B_Phar:
+            case R.id.Phar:
                 mMap.clear();
                 String pharmaci = "pharmacy";
                 url = getUrl(latii, longi, pharmaci);
@@ -183,7 +183,7 @@ locationTrack();
                 getNearbyPlacesData.execute(dataTransfer);
                 Toast.makeText(MapsActivity.this, "Showing Nearby Pharmacy", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.B_to:
+            case R.id.supermarket:
                 mMap.clear();
                 String supermarket = "grocery_or_supermarket";//store zeda
                 url = getUrl(latii, longi, supermarket);

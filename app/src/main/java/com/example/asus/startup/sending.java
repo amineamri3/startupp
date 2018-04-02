@@ -111,7 +111,7 @@ public class sending extends Activity implements LocationListener{
             Toast.makeText(getBaseContext(), "No Provider Found",
                     Toast.LENGTH_SHORT).show();
         }
-        DatabaseAccess db = DatabaseAccess.getInstance(this);
+        DbLocal db = new DbLocal(this);
        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
        String num,name;
         if (user!=null){
