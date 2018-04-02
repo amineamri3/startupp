@@ -41,7 +41,7 @@ public class blacklist extends Activity {
         Button shareBtn = (Button)findViewById(R.id.shareBtn);
 
         DatabaseAccess db = DatabaseAccess.getInstance(this);
-        db.openToRead();
+        db.openToWrite();
 
            List<String> aller = new ArrayList<>();
            aller = db.getAllAllergin();

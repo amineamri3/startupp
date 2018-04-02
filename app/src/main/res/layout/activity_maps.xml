@@ -1,70 +1,75 @@
-<RelativeLayout
-
+<LinearLayout
+android:orientation="vertical"
+    android:weightSum="1"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/group"
+        android:layout_weight="0.12"
 
+        android:weightSum="1">
+        <ImageButton
+            android:id="@+id/hopistals"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.25"
+            android:layout_height="match_parent"
+            android:background="@drawable/menu"
+            android:src="@drawable/hospital"
+            android:onClick="onClick"
+            />
+
+        <ImageButton
+            android:id="@+id/Doctor"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:onClick="onClick"
+            android:layout_weight="0.25"
+            android:background="@drawable/menu"
+            android:src="@drawable/doctors"
+            />
+
+        <ImageButton
+            android:id="@+id/Phar"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.25"
+            android:layout_height="match_parent"
+            android:onClick="onClick"
+            android:background="@drawable/menu"
+            android:src="@drawable/phar"
+            />
+
+        <ImageButton
+            android:id="@+id/supermarket"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.25"
+            android:layout_height="match_parent"
+            android:onClick="onClick"
+            android:background="@drawable/menu"
+            android:src="@drawable/shops"
+
+            />
+
+    </LinearLayout>
 
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
+        android:layout_weight="0.88"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         tools:context="com.example.priyanka.mapsdemo.MapsActivity"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/group" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/group"
-    android:weightSum="1">
-    <Button
-        android:id="@+id/B_hopistals"
-        android:layout_width="0dp"
-        android:layout_weight="0.25"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:onClick="onClick"
-        android:text="Hospitals" />
 
-    <Button
-        android:id="@+id/B_Doctor"
-        android:layout_width="0dp"
-        android:layout_weight="0.25"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/B_hopistals"
-        android:layout_toRightOf="@+id/B_hopistals"
-        android:onClick="onClick"
-        android:text="Doctor" />
 
-    <Button
-        android:id="@+id/B_Phar"
-        android:layout_width="0dp"
-        android:layout_weight="0.25"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/B_Doctor"
-        android:layout_toRightOf="@+id/B_Doctor"
-        android:onClick="onClick"
-        android:text="Pharmacy" />
-
-    <Button
-        android:id="@+id/B_to"
-        android:layout_width="0dp"
-        android:layout_weight="0.25"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/B_Phar"
-        android:layout_toRightOf="@+id/B_Phar"
-        android:onClick="onClick"
-        android:text="Supermarket" />
 
 </LinearLayout>
-
-
-</RelativeLayout>

@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                     LoginActivity.this.startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            finish();
                 }
             });
 
@@ -74,7 +75,10 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Network Unavailable!", Toast.LENGTH_LONG).show();
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
     @Override
     public void onStart() {
         super.onStart();
