@@ -43,7 +43,7 @@ public class blacklist extends Activity {
         DatabaseAccess db = DatabaseAccess.getInstance(this);
         db.openToWrite();
 
-           List<String> aller = new ArrayList<>();
+           List<String> aller ;
            aller = db.getAllAllergin();
         final List<Aliments> elements = new ArrayList<>();
         for(int i =0;i<aller.size();i++){
