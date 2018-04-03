@@ -99,9 +99,9 @@ public class DatabaseAccess {
 
         if(cursor.moveToFirst()){
 
-        do{
-            list.add(cursor.getString(7));
-        }while(cursor.moveToNext());
+            do{
+                list.add(cursor.getString(7));
+            }while(cursor.moveToNext());
 
         }
         return (list);
@@ -117,10 +117,9 @@ public class DatabaseAccess {
     public String getName (String code){
         Cursor c = database.rawQuery("SELECT name FROM aliment WHERE code = ?",new String[]{code});
 
-           if(c.moveToFirst())
+        if(c.moveToFirst())
             return c.getString(0);
-           else
-               return "Code n'existe pas";
-        }
+        else
+            return "Code n'existe pas";
     }
-
+}

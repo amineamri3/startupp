@@ -166,7 +166,7 @@ public class profile extends Activity {
                                     db.setAllergy(8, boolToInt(s1.isChecked()));
                                     db.setAllergy(1, boolToInt(s2.isChecked()));
                                     db.setAllergy(5, boolToInt(s3.isChecked()));
-                                    db.setAllergy(9, boolToInt(s4.isChecked()));
+                                    db.setAllergy(11, boolToInt(s4.isChecked()));
                                 }
 
 

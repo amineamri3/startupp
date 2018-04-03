@@ -43,8 +43,8 @@ public class blacklist extends Activity {
         DatabaseAccess db = DatabaseAccess.getInstance(this);
         db.openToWrite();
 
-           List<String> aller ;
-           aller = db.getAllAllergin();
+        List<String> aller ;
+        aller = db.getAllAllergin();
         final List<Aliments> elements = new ArrayList<>();
         for(int i =0;i<aller.size();i++){
             elements.add(new Aliments(false,aller.get(i)));
@@ -56,21 +56,21 @@ public class blacklist extends Activity {
         checkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             for(int i =0; i< elements.size();i++){
-                 elements.get(i).setSelected(CheckState);
+                for(int i =0; i< elements.size();i++){
+                    elements.get(i).setSelected(CheckState);
 
-             }
-             adapter.notifyDataSetChanged();
-            if(CheckState){
-                 CheckState = false;
-                 checkBtn.setBackgroundResource(R.drawable.checked);
-                 checkText.setText("Uncheck All");
-            }else{
-                 CheckState = true;
-                 checkBtn.setBackgroundResource(R.drawable.check);
-                checkText.setText("Check All");
+                }
+                adapter.notifyDataSetChanged();
+                if(CheckState){
+                    CheckState = false;
+                    checkBtn.setBackgroundResource(R.drawable.checked);
+                    checkText.setText("Uncheck All");
+                }else{
+                    CheckState = true;
+                    checkBtn.setBackgroundResource(R.drawable.check);
+                    checkText.setText("Check All");
 
-            }
+                }
             }
         });
 
@@ -96,12 +96,12 @@ public class blacklist extends Activity {
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-          String message = "Allergy Causing Products : \n";
+                String message = "Allergy Causing Products : \n";
                 for(int i =0; i< elements.size();i++){
-                   if( elements.get(i).isSelected){
-                     message += elements.get(i).getName();
-                     message +="\n";
-                   }
+                    if( elements.get(i).isSelected){
+                        message += elements.get(i).getName();
+                        message +="\n";
+                    }
                 }
                    /* Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
                     intent2.setType("text/plain");
@@ -125,7 +125,7 @@ public class blacklist extends Activity {
         emailIntent.setAction(Intent.ACTION_SEND);
         // Native email client doesn't currently support HTML, but it doesn't hurt to try in case they fix it
         emailIntent.putExtra(Intent.EXTRA_TEXT, msg);
-       // emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Sha");
+        // emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Sha");
         emailIntent.setType("message/rfc822");
 
         PackageManager pm = getPackageManager();
@@ -157,7 +157,7 @@ public class blacklist extends Activity {
                     intent.putExtra(Intent.EXTRA_TEXT, msg);
                 } else if(packageName.contains("android.gm")) { // If Gmail shows up twice, try removing this else-if clause and the reference to "android.gm" above
                     intent.putExtra(Intent.EXTRA_TEXT,msg);
-                   // intent.putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.share_email_subject));
+                    // intent.putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.share_email_subject));
                     intent.setType("message/rfc822");
                 }
 

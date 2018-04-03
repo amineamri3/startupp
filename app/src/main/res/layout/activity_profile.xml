@@ -32,6 +32,15 @@
         android:src="@drawable/profile"
             android:layout_alignParentBottom="true"
             />
+        <Button
+            android:id="@+id/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:layout_alignParentTop="true"
+            android:layout_margin="10dp"
+            android:layout_alignRight="@+id/name"
+            android:background="@drawable/menu_button"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,72 +109,103 @@
 
 
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:orientation="horizontal"
+    android:layout_weight="0.7"
+    android:weightSum="1"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
 
-        <LinearLayout
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="0.4"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+
+        android:weightSum="1">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-
+            android:text="gluten"
+            android:layout_weight="0.25"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:gravity="center"
-            android:weightSum="1"
-            >
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text="gluten"
-                android:enabled="false"
-
-                android:layout_weight="0.2"
-             />
-
-            <Switch
-                android:id="@+id/switch2"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text="lactose"
-                android:enabled="false"
-
-                android:layout_weight="0.2"
-           />
-            <Switch
-                android:id="@+id/switch3"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text="amidon de blé"
-                android:enabled="false"
-
-                android:layout_weight="0.2"
-                />
-            <Switch
-                android:id="@+id/switch4"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text="noix"
-                android:enabled="false"
-
-                android:layout_weight="0.2"
-                />
+            android:text="lactose"
+            android:layout_weight="0.25"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="amidon du blé"
+            android:layout_weight="0.25"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="peanuts"
+            android:gravity="center"
+            android:layout_weight="0.25"/>
+    </LinearLayout>
 
 
-        </LinearLayout>
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="0.3"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="left"
+    android:weightSum="1">
 
 
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:enabled="false"
+        android:layout_weight="0.25"
+        />
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:enabled="false"
+        android:layout_weight="0.25"
+        />
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:enabled="false"
+
+        android:layout_weight="0.25"
+        />
+
+    <Switch
+        android:id="@+id/switch4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:enabled="false"
+        android:layout_weight="0.25"
+        />
+</LinearLayout>
+
+
+
+
+</LinearLayout>
 
     </LinearLayout>
-        <Button
-            android:id="@+id/update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update"
-            android:layout_gravity="right"
-            android:layout_margin="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/menu_button"/>
+
 </RelativeLayout>
 
 
