@@ -137,7 +137,7 @@
                 android:id="@+id/switch3"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text="lysozyme"
+                android:text="amidon de blé"
                 android:enabled="false"
 
                 android:layout_weight="0.2"

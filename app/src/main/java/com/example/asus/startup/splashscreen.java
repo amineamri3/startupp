@@ -13,17 +13,16 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 //extends AwesomeSplash!
-public class splashscreen extends AppCompatActivity{
+public class splashscreen extends Activity{
 
 
 
-        private final int SPLASH_DISPLAY_LENGTH = 3000;
+        private final int SPLASH_DISPLAY_LENGTH = 2000;
 
         @Override
         public void onCreate(Bundle icicle) {
             super.onCreate(icicle);
             setContentView(R.layout.splashscreen);
-            getSupportActionBar().hide();
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run() {

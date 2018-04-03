@@ -75,7 +75,9 @@
         <activity android:name=".LoginActivity">
 
         </activity>
-        <activity android:name=".splashscreen">
+        <activity android:name=".splashscreen"
+android:theme="@android:style/Theme.Translucent.NoTitleBar"
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

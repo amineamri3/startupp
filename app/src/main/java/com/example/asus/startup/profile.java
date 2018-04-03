@@ -53,13 +53,13 @@ public class profile extends Activity {
          s2 = (Switch) findViewById(R.id.switch2);
          s3 = (Switch) findViewById(R.id.switch3);
          s4 = (Switch) findViewById(R.id.switch4);
-
         bt=(ImageButton) findViewById(R.id.logout);
         de.hdodenhof.circleimageview.CircleImageView image =(de.hdodenhof.circleimageview.CircleImageView) findViewById(R.id.profile_image);
         update.setVisibility(View.GONE);
          db = new DbLocal(profile.this);
 
         //db.openToRead();
+
 
 
          user = FirebaseAuth.getInstance().getCurrentUser();
@@ -132,12 +132,18 @@ public class profile extends Activity {
                                 allergi.add(s2.isChecked());
                                 allergi.add(s3.isChecked());
                                 allergi.add(s4.isChecked());
+
                                 if (user==null){
                                 db.updateProfile(allergi,phone.getText().toString(),"OFFLINE");
 
                                 }else{
                                 db.updateProfile(allergi,phone.getText().toString(),uid);
-
+                                    DatabaseAccess db = DatabaseAccess.getInstance(profile.this);
+                                    db.openToWrite();
+                                    db.setAllergy(8, boolToInt(s1.isChecked()));
+                                    db.setAllergy(1, boolToInt(s2.isChecked()));
+                                    db.setAllergy(5, boolToInt(s3.isChecked()));
+                                    db.setAllergy(9, boolToInt(s4.isChecked()));
                                 }
 
 
@@ -202,5 +208,8 @@ public class profile extends Activity {
 
 
 
+    }
+    int boolToInt(Boolean b) {
+        return b.compareTo(false);
     }
 }
