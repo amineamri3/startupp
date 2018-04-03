@@ -5,7 +5,7 @@
     <item
 
         android:id="@+id/modif"
-        android:title="Modify Profil"
+        android:title="Modify Profile"
         app:showAsAction="never"
     />
 

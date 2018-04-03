@@ -25,13 +25,11 @@
             android:src="@drawable/option"
 
             android:id="@+id/logout"/>
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/profile_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/profile"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"
+        android:src="@drawable/profile"
             android:layout_alignParentBottom="true"
             />
         <TextView

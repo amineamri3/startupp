@@ -9,10 +9,14 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -20,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -27,6 +32,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -42,6 +48,7 @@ public class profile extends Activity {
     Switch s1,s2,s3,s4;
     FirebaseUser user;
     String uid;
+    ImageView image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +61,7 @@ public class profile extends Activity {
          s3 = (Switch) findViewById(R.id.switch3);
          s4 = (Switch) findViewById(R.id.switch4);
         bt=(ImageButton) findViewById(R.id.logout);
-        de.hdodenhof.circleimageview.CircleImageView image =(de.hdodenhof.circleimageview.CircleImageView) findViewById(R.id.profile_image);
+        image =(ImageView) findViewById(R.id.profile_image);
         update.setVisibility(View.GONE);
          db = new DbLocal(profile.this);
 
@@ -71,10 +78,26 @@ public class profile extends Activity {
             boolean emailVerified = user.isEmailVerified();
             namee.setText(name);
             if (photoUrl!=null)
-            Picasso.get().load(photoUrl)
-                    .resize(80, 80)
-                    .centerCrop()
-                    .into(image);
+                Picasso.get().load(photoUrl)
+                        .resize(80, 80)
+                        .into(image, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                Bitmap imageBitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
+                                RoundedBitmapDrawable imageDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
+                                imageDrawable.setCircular(true);
+                                imageDrawable.setCornerRadius(Math.max(imageBitmap.getWidth(), imageBitmap.getHeight()) / 2.0f);
+                                image.setImageDrawable(imageDrawable);
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                image.setImageResource(R.drawable.profile);
+
+                            }
+
+                        });
+
              uid = user.getUid();
             ArrayList<Boolean> allergi =db.getswitch(uid);
             String num =db.getNum(uid);
